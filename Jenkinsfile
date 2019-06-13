@@ -15,11 +15,13 @@ pipeline {
         stage('Build') {
             steps{
                 echo 'Building...'
+                ./gradlew clean test jar
             }
         }
         stage('Results') {
             steps{
                 echo 'Preparing results...'
+                junit '**/build/test-results/test/TEST-*.xml'
             }
         }
     }
